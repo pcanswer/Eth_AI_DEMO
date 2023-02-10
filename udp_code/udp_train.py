@@ -15,9 +15,9 @@ import datetime
 train_flag = 0
 test_flag = 1
 show_cm = 0
-test_file_dir ='./udp_data/UDP_NP.csv' 
+test_file_dir ='./udp_data/UDP_process_test.csv'  
 model_file = './udp_model/udp_dt.joblib'
-train_file = './udp_data/UDP_Process.csv'
+train_file = './udp_data/UDP_process_train.csv'
 scaler_file = './udp_model/scaler_file.joblib'
 encoder_file = './udp_model/encoder_file.joblib'
 class Eth_DT:
@@ -127,6 +127,9 @@ class Eth_DT:
         else:
             attack_detect = 0
             # 检测结果赋值检测标签
+        result.loc[result['Label'] == 2, 'Label'] = 'Scan'
+        result.loc[result['Label'] == 0, 'Label'] = 'Flood'
+        result.loc[result['Label'] == 1, 'Label'] = 'Normal'
         result.loc[result['status'] == 2, 'status'] = 'Scan'
         result.loc[result['status'] == 0, 'status'] = 'Flood'
         result.loc[result['status'] == 1, 'status'] = 'Normal'
