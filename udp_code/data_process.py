@@ -16,7 +16,7 @@ def csv_process(label):
     df_normal
     df_normal.keys()
     df = df_normal.iloc[:,7:]
-    df['Label'] = 'Scan'
+    df['Label'] = label
     X_train, X_test= train_test_split(df, train_size = 0.8, test_size = 0.2, random_state = 0)
     X_train.to_csv(dir+'UDP_'+label+'_train.csv',index=0)
     X_test.to_csv(dir+'UDP_'+label+'_test.csv',index=0)
